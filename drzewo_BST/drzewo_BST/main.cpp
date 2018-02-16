@@ -1,4 +1,6 @@
 #include <iostream>
+#include <gtest\gtest.h>
+#include <gmock\gmock.h>
 
 
 using namespace std;
@@ -560,7 +562,7 @@ public:
 
 
 
-int main()
+int main2()
 {
 
 	int wybor = 0;
@@ -593,4 +595,43 @@ int main()
 		cout << endl;
 
 	} while (wybor != 6);
+	return 0;
+}
+
+
+struct TestStruct : public ::testing::Test
+{
+
+	virtual void SetUp() override
+	{
+
+	}
+
+	drzewo drzewo;
+
+	// Inherited via Test
+	virtual void TestBody() override
+	{
+	}
+};
+
+TEST_F(TestStruct, dummytest)
+{
+	//drzewo.dodajWezel();
+	EXPECT_TRUE(2+3==5);
+}
+
+TEST(dddd)
+{
+	EXPECT_TRUE(true);
+}
+
+int main(int argc, char**argv)
+{
+	::testing::InitGoogleTest(&argc, argv);
+	::testing::InitGoogleMock(&argc, argv);
+
+	
+	auto r = RUN_ALL_TESTS();
+	system("pause");
 }
